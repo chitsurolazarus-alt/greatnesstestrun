@@ -3,6 +3,7 @@
    Scroll-Away Header & Clean Design
    MOBILE: 2 PRODUCTS SIDE BY SIDE (LEFT & RIGHT)
    CART ICON ALIGNED IN RIBBON WITH NAVIGATION
+   FIXED CAROUSEL - ONLY ONE IMAGE VISIBLE AT A TIME
 ============================================ */
 
 :root {
@@ -610,6 +611,9 @@ header.header-hidden {
     }
 }
 
+/* ============================================
+   CAROUSEL - FIXED: ONLY ONE IMAGE VISIBLE AT A TIME
+============================================ */
 .product-card {
     background: var(--card-bg);
     border-radius: 0;
@@ -632,7 +636,6 @@ header.header-hidden {
     aspect-ratio: 1 / 1;
     background: var(--bg-tertiary);
     overflow: hidden;
-    padding: 20px;
 }
 
 .carousel-images {
@@ -645,8 +648,8 @@ header.header-hidden {
 .carousel-img {
     width: 100%;
     height: 100%;
+    flex: 0 0 100%;
     object-fit: contain;
-    flex-shrink: 0;
 }
 
 .carousel-btn {
@@ -662,6 +665,7 @@ header.header-hidden {
     transition: all 0.3s ease;
     z-index: 2;
     opacity: 0;
+    border-radius: 4px;
 }
 
 .product-card:hover .carousel-btn {
@@ -673,8 +677,8 @@ header.header-hidden {
     color: var(--bg-primary);
 }
 
-.carousel-btn.prev { left: 20px; }
-.carousel-btn.next { right: 20px; }
+.carousel-btn.prev { left: 12px; }
+.carousel-btn.next { right: 12px; }
 
 .product-info {
     padding: 24px;
