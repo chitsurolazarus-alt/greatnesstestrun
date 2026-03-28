@@ -1,6 +1,8 @@
 /* ============================================
    CHRIST OR NOTHING - PROFESSIONAL BLACK THEME
    Scroll-Away Header & Clean Design
+   MOBILE: 2 PRODUCTS SIDE BY SIDE (LEFT & RIGHT)
+   CART ICON ALIGNED IN RIBBON WITH NAVIGATION
 ============================================ */
 
 :root {
@@ -106,6 +108,13 @@ header.header-hidden {
     opacity: 0.8;
 }
 
+/* Navigation and Cart Container */
+.nav-and-cart {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
 .nav-menu {
     display: flex;
     flex-wrap: wrap;
@@ -149,6 +158,8 @@ header.header-hidden {
     font-size: 1.4rem;
     color: var(--text-primary);
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
 .cart-icon:hover {
@@ -393,12 +404,210 @@ header.header-hidden {
 }
 
 /* ============================================
-   PRODUCT GRID
+   PRODUCT GRID - MODIFIED FOR MOBILE 2-COLUMN LAYOUT
+   Desktop: auto-fill minmax(320px, 1fr)
+   Mobile (max-width: 768px): exactly 2 columns side by side
 ============================================ */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 40px;
+}
+
+/* Mobile devices: force exactly 2 columns (left & right) */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .container {
+        padding: 0 12px;
+    }
+    
+    /* Header mobile layout - cart icon in line with nav */
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 12px 0;
+    }
+    
+    .logo-area {
+        justify-content: center;
+    }
+    
+    .nav-and-cart {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        width: 100%;
+    }
+    
+    .nav-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        flex: 1;
+    }
+    
+    .nav-menu li a {
+        font-size: 0.7rem;
+    }
+    
+    .cart-icon {
+        flex-shrink: 0;
+        font-size: 1.3rem;
+    }
+    
+    .brand-name {
+        font-size: 1rem;
+    }
+    
+    .product-info {
+        padding: 12px 8px;
+    }
+    
+    .product-name {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+    
+    .product-price {
+        font-size: 0.85rem;
+        margin: 4px 0;
+    }
+    
+    .product-desc {
+        font-size: 0.6rem;
+        display: none;
+    }
+    
+    .color-options {
+        gap: 6px;
+        margin-top: 8px;
+        padding-top: 6px;
+    }
+    
+    .color-swatch {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .type-options {
+        gap: 6px;
+        margin: 6px 0;
+    }
+    
+    .type-btn {
+        padding: 4px 8px;
+        font-size: 0.55rem;
+    }
+    
+    .carousel {
+        padding: 10px;
+    }
+    
+    .carousel-btn {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+    }
+    
+    .carousel-btn.prev { left: 6px; }
+    .carousel-btn.next { right: 6px; }
+    
+    .section {
+        margin: 50px 0;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 24px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero {
+        padding: 100px 0 50px;
+        min-height: 70vh;
+    }
+    
+    .hero-tagline {
+        font-size: 0.7rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 10px 24px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra small devices: maintain 2 columns */
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .product-info {
+        padding: 8px 6px;
+    }
+    
+    .product-name {
+        font-size: 0.65rem;
+    }
+    
+    .product-price {
+        font-size: 0.75rem;
+        margin: 3px 0;
+    }
+    
+    .color-swatch {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .type-btn {
+        padding: 2px 6px;
+        font-size: 0.5rem;
+    }
+    
+    .carousel {
+        padding: 6px;
+    }
+    
+    .nav-menu li a {
+        font-size: 0.6rem;
+    }
+    
+    .cart-icon {
+        font-size: 1.2rem;
+    }
+    
+    .cart-count {
+        width: 16px;
+        height: 16px;
+        font-size: 0.55rem;
+        top: -8px;
+        right: -10px;
+    }
+    
+    .brand-name {
+        font-size: 0.85rem;
+    }
+    
+    .logo-img {
+        width: 35px;
+        height: 35px;
+    }
 }
 
 .product-card {
@@ -408,6 +617,8 @@ header.header-hidden {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid var(--border-color);
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card:hover {
@@ -467,6 +678,9 @@ header.header-hidden {
 
 .product-info {
     padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-name {
@@ -500,6 +714,7 @@ header.header-hidden {
     padding-top: 12px;
     border-top: 1px solid var(--border-color);
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .color-swatch {
@@ -731,6 +946,7 @@ header.header-hidden {
     padding: 32px;
     text-align: center;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .contact-card:hover {
@@ -775,6 +991,11 @@ header.header-hidden {
     font-size: 0.85rem;
     color: var(--text-muted);
     flex: 1;
+}
+
+/* TikTok Card */
+.contact-card.tiktok-card {
+    cursor: pointer;
 }
 
 /* ============================================
@@ -1006,20 +1227,67 @@ footer a {
     text-decoration: none;
 }
 
-/* Responsive */
+/* Responsive for Product Detail Page */
 @media (max-width: 768px) {
-    .container { padding: 0 20px; }
-    .hero-title { font-size: 2.5rem; }
-    .hero { padding: 100px 0 60px; }
-    .navbar { flex-direction: column; align-items: stretch; }
-    .nav-menu { justify-content: center; gap: 20px; }
-    .products-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-    .product-detail-grid { grid-template-columns: 1fr; gap: 30px; }
+    .product-detail {
+        margin: 80px 0 40px;
+    }
+    
+    .product-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .product-detail-images {
+        padding: 20px;
+    }
+    
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .product-detail-info h1 {
+        font-size: 1.5rem;
+    }
+    
+    .product-detail-price {
+        font-size: 1.2rem;
+    }
+    
+    .recommendations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .recommendation-card {
+        padding: 12px;
+    }
+    
+    .recommendation-card h4 {
+        font-size: 0.75rem;
+    }
+    
+    .recommendation-card p {
+        font-size: 0.8rem;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }
 
 @media (max-width: 480px) {
-    .brand-name { font-size: 1rem; }
-    .hero-title { font-size: 1.8rem; }
-    .section-title { font-size: 1.4rem; }
-    .products-grid { grid-template-columns: 1fr; }
+    .recommendations-grid {
+        gap: 12px;
+    }
+    
+    .recommendation-card h4 {
+        font-size: 0.65rem;
+    }
+    
+    .recommendation-card p {
+        font-size: 0.7rem;
+    }
 }
