@@ -4,6 +4,7 @@
 // Randomized initial colors for each product
 // Shopping Cart, Product Details, Recommendations
 // Scroll-Away Header
+// FIXED CAROUSEL - Only one image visible at a time
 // ============================================
 
 // Product Database - Grouped by Design with Color Options
@@ -375,14 +376,18 @@ function initAboutModal() {
     }
 }
 
-// Carousel Functions
+// Carousel Functions - FIXED: Only one image visible at a time
 function initializeSingleCarousel(carouselElement, totalImages) {
     const imgContainer = carouselElement.querySelector('.carousel-images');
     const prevBtn = carouselElement.querySelector('.prev');
     const nextBtn = carouselElement.querySelector('.next');
     
     if (!imgContainer) return;
-    if (totalImages <= 1) return;
+    if (totalImages <= 1) {
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        return;
+    }
     
     let currentIndex = 0;
     
@@ -412,7 +417,7 @@ function initializeSingleCarousel(carouselElement, totalImages) {
 }
 
 function initializeCarousels() {
-    const carousels = document.querySelectorAll('.carousel[data-carousel]');
+    const carousels = document.querySelectorAll('.carousel');
     for (let i = 0; i < carousels.length; i++) {
         const carousel = carousels[i];
         const images = carousel.querySelectorAll('.carousel-img');
@@ -444,7 +449,7 @@ function createCarousel(images, productId) {
             '</div>';
     }
     
-    return '<div class="carousel" data-carousel data-product-id="' + productId + '">' +
+    return '<div class="carousel" data-product-id="' + productId + '">' +
         '<div class="carousel-images">' +
         imagesHTML +
         '</div>' +
@@ -756,12 +761,17 @@ function changeProductColor(productId, color) {
             imgContainer.innerHTML = newImagesHTML;
             imgContainer.style.transform = 'translateX(0)';
             
+            const prevBtn = carouselContainer.querySelector('.prev');
+            const nextBtn = carouselContainer.querySelector('.next');
+            
             if (newImages.length > 1) {
-                const carouselAttr = carouselContainer.getAttribute('data-carousel');
-                if (!carouselAttr) {
-                    carouselContainer.setAttribute('data-carousel', '');
+                if (!prevBtn || !nextBtn) {
+                    if (!prevBtn) carouselContainer.insertAdjacentHTML('beforeend', '<button class="carousel-btn prev">‹</button><button class="carousel-btn next">›</button>');
                 }
                 initializeSingleCarousel(carouselContainer, newImages.length);
+            } else {
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
             }
         }
     }
